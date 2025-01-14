@@ -151,7 +151,7 @@ end
 local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/lobox920/Notification-Library/Main/Library.lua"))()
 
 NotificationLibrary:SendNotification("Warning", "Chờ xíu...", 10)
-NotificationLibrary:SendNotification("Warning", "cảm ơn vì dùng Lion Hub", 10)
+NotificationLibrary:SendNotification("Warning", "TRẨU ROBLOX DEP TRAITRAI", 10)
 NotificationLibrary:SendNotification("Warning", "https://discord.gg/pGn6xsmfSg", 10)
 
 spawn(function()
