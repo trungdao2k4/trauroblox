@@ -10,18 +10,18 @@ local Discord = Window:MakeTab({"Youtube", "video"})
 Discord:AddDiscordInvite({
   Name = "TRẨU ROBLOX",
   Description = "KÊNH YOUTUBE CHÍNH THỨC CỦA TRẨU ",
-  Logo = "rbxassetid://1079134947",
+  Logo = "rbxassetid:1079134947",
   Invite = "https://www.youtube.com/@Trauroblox2004"
 })
 local Discord = Window:MakeTab({"Discord", "play"})
 Discord:AddDiscordInvite({
   Name = "Trẩu Roblox Và Anh Em",
   Description = "THAM GIA ĐỂ GIAO LƯU NHÉ",
-  Logo = "rbxassetid://1079134947",
+  Logo = "rbxassetid:1079134947",
   Invite = "https://discord.gg/s8R9b5NfsU"
   })
 local Tab = Window:MakeTab({"tên tab",
-	Icon = "rbxassetid://10734941499",
+	Icon = "rbxassetid:10734941499",
 	PremiumOnly = false
 })
 
