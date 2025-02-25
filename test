@@ -1,24 +1,24 @@
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh12eqweaws/vvvs/refs/heads/main/caz"))()
 local Window = redzlib:MakeWindow({
-  Title = "bt me gi dau",
-  SubTitle = "???",
+  Title = "TRẨU ROBLOX",
+  SubTitle = "YTB: TRẨU ROBLOX",
 })
 
 local AFKOptions = {}
 
 local Discord = Window:MakeTab({"Youtube", "video"})
 Discord:AddDiscordInvite({
-  Name = "////",
-  Description = "cc dumamay",
-  Logo = "rbxassetid://id ảnh",
-  Invite = ""
+  Name = "TRẨU ROBLOX",
+  Description = "KÊNH YOUTUBE CHÍNH THỨC CỦA TRẨU ",
+  Logo = "rbxassetid:1079134947",
+  Invite = "https://www.youtube.com/@Trauroblox2004"
 })
-local Discord = Window:MakeTab({"Facebook", "play"})
+local Discord = Window:MakeTab({"Discord", "play"})
 Discord:AddDiscordInvite({
-  Name = "Duc Design",
-  Description = "cc dumamay",
-  Logo = "rbxassetid://id ảnh",
-  Invite = "https://www.facebook.com/"
+  Name = "Trẩu Roblox Và Anh Em",
+  Description = "THAM GIA ĐỂ GIAO LƯU NHÉ",
+  Logo = "rbxassetid:1079134947",
+  Invite = "https://discord.gg/s8R9b5NfsU"
   })
 local Tab = Window:MakeTab({"tên tab",
 	Icon = "rbxassetid://10734941499",
