@@ -21,7 +21,7 @@ local Discord = Window:MakeTab({
 Discord:AddDiscordInvite({
   Name = "Trẩu Roblox Và Anh Em",
   Description = "THAM GIA ĐỂ GIAO LƯU NHÉ",
-  Logo = "rbxassetid://6031075938",
+Image = "rbxassetid://6031075938",
   Invite = "https://discord.gg/s8R9b5NfsU"
 })
 
