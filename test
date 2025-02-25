@@ -10,7 +10,7 @@ local Discord = Window:MakeTab({"Youtube", "video"})
 Discord:AddDiscordInvite({
   Name = "TRẨU ROBLOX",
   Description = "KÊNH YOUTUBE CHÍNH THỨC CỦA TRẨU ",
-  Logo = "rbxassetid://1079134947",
+  Image = "rbxassetid://1079134947",
   Invite = "https://www.youtube.com/@Trauroblox2004"
 })
 local Discord = Window:MakeTab({
