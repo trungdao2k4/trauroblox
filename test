@@ -13,13 +13,18 @@ Discord:AddDiscordInvite({
   Logo = "rbxassetid://1079134947",
   Invite = "https://www.youtube.com/@Trauroblox2004"
 })
-local Discord = Window:MakeTab({"Discord", "play"})
+local Discord = Window:MakeTab({
+  Name = "Discord",
+  Icon = "play"
+})
+
 Discord:AddDiscordInvite({
   Name = "Trẩu Roblox Và Anh Em",
   Description = "THAM GIA ĐỂ GIAO LƯU NHÉ",
   Logo = "rbxassetid://1079134947",
   Invite = "https://discord.gg/s8R9b5NfsU"
-  })
+})
+
 local Tab = Window:MakeTab({"tên tab",
 	Icon = "rbxassetid://10734941499",
 	PremiumOnly = false
