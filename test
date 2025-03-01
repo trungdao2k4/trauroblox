@@ -9323,7 +9323,7 @@ spawn(function()
     end
 end);
 v14:Notify({
-    Title = "thông báo",
-    Content = "Tải Xong",
+    Title = "Thông Báo",
+    Content = "Tải Xong, Chơi Game Vui Vẻ Nhé",
     Duration = 10
 });
