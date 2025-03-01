@@ -1,6 +1,6 @@
 
 
-shared.LoaderTitle = "Script by cc tao nek bt mẹ j đâu";
+shared.LoaderTitle = "YTB:Trẩu Roblox";
 shared.LoaderKeyFrames = {
     [1] = {
         1,
@@ -312,8 +312,8 @@ v5:Destroy();
 -- end);
 local v14 = loadstring(game:HttpGet("https://raw.githubusercontent.com/obfalchx/testfluent/refs/heads/main/FluentTrau"))();
 local v15 = v14:CreateWindow({
-    Title = "cc hub cực múp",
-    SubTitle = "make by cc ai mà bt",
+    Title = "Trẩu Roblox",
+    SubTitle = "Trẩu Roblox",
     TabWidth = 160,
     Theme = "black",
     Acrylic = false,
@@ -2679,7 +2679,7 @@ v16.Home:AddButton({
     Title = "Discord",
     Description = "Giao Lưu",
     Callback = function()
-        setclipboard("");
+        setclipboard("https://discord.gg/s8R9b5NfsU");
     end
 });
 _G.FastAttackStrix_Mode = "Super Fast Attack";
