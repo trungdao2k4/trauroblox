@@ -27,7 +27,7 @@ local v2 = {
             Topic = Color3.fromRGB(200, 200, 200),
             Title = Color3.fromRGB(255, 255, 255),
             LoaderBackground = Color3.fromRGB(173, 216, 230),
-            LoaderSplash = Color3.fromRGB(3, 252, 3)
+            LoaderSplash = Color3.fromRGB(173, 216, 230)
         }
     },
     Keyframes = shared.LoaderKeyFrames or {
