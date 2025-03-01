@@ -4686,7 +4686,7 @@ if Sea3 then
         end
         for v728, v729 in pairs(game:GetService("Workspace").Map.MysticIsland:GetDescendants()) do
             if v729:IsA("MeshPart") then
-                if (v729.MeshId == "rbxassetid://120402051891075") then
+                if (v729.MeshId == "rbxassetid://130160749337944") then
                     return v729;
                 end
             end
