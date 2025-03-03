@@ -12,6 +12,8 @@ if not Configs.Key then
         }
     }
 end
+print(Configs) -- Kiểm tra toàn bộ bảng Configs
+print(Configs.Key) -- Kiểm tra bảng Key bên trong Configs
 
 
 local Window = MakeWindow({
