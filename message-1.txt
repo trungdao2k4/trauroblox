@@ -7,6 +7,8 @@ local Window = MakeWindow({
     },
     Key = {
         KeySystem = false -- Tắt yêu cầu nhập Key
+    Notifi = {
+        Notifications = true,
     }
 })
 
