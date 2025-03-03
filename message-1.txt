@@ -5,17 +5,6 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V
          Title = "Trẩu Hub",
          Animation = "Trẩu Hub"
          },
-        Key = {
-        KeySystem = true,
-        Title = "Get Key",
-        Description = "Trẩu Hub Auto Hop (FREE)",
-        Keys = {"12345678"},
-        Notifi = {
-        Notifications = true,
-        CorrectKey = "Đang chạy script...",
-       Incorrectkey = "Key sai",
-      }
-    }
   })
 
        MinimizeButton({
