@@ -1,20 +1,23 @@
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V2/refs/heads/main/UiREDzV2.lua")))()
+if not Configs then Configs = {} end
+if not Configs.Key then Configs.Key = {} end
 if not Configs.Key.Notifi then
     Configs.Key.Notifi = {
-        Notifications = false, -- hoặc true nếu bạn muốn bật thông báo
+        Notifications = false, -- Hoặc true nếu bạn muốn bật thông báo
         Incorrectkey = "The key is incorrect",
         CorrectKey = "Running the Script...",
         CopyKeyLink = "Copied to Clipboard"
     }
 end
 
+
 local Window = MakeWindow({
     Hub = {
         Title = "Teddy Hub",
         Animation = "YTB: Teddy"
-    },
-    Key = {} -- Bỏ trống phần Key
+    }
 })
+
 
 
        MinimizeButton({
