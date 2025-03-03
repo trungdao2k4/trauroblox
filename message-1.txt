@@ -1,17 +1,19 @@
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V2/refs/heads/main/UiREDzV2.lua")))()
-if not Configs then Configs = {} end
-if not Configs.Key then
-    Configs.Key = {
-        KeySystem = false, -- Tắt hệ thống Key
-        Keys = {},
-        Notifi = {
-            Notifications = false,
-            Incorrectkey = "The key is incorrect",
-            CorrectKey = "Running the Script...",
-            CopyKeyLink = "Copied to Clipboard"
+if not Configs then
+    Configs = {
+        Key = {
+            KeySystem = false, -- Tắt hệ thống Key
+            Keys = {},
+            Notifi = {
+                Notifications = false,
+                Incorrectkey = "The key is incorrect",
+                CorrectKey = "Running the Script...",
+                CopyKeyLink = "Copied to Clipboard"
+            }
         }
     }
 end
+
 print(Configs) -- Kiểm tra toàn bộ bảng Configs
 print(Configs.Key) -- Kiểm tra bảng Key bên trong Configs
 
