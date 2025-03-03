@@ -1,24 +1,25 @@
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V2/refs/heads/main/UiREDzV2.lua")))()
 
-       local Window = MakeWindow({
-         Hub = {
-         Title = "Teddy Hub",
-         Animation = "YTB: Teddy"
-         },
-        Key = {
-        KeySystem = fasle,
-        Title = "Get Key",
-        Description = "Teddy Hub Auto Hop (FREE)",
-        KeyLink = "https://link4m.com/21cId",
-        Keys = {"teddyseetinkvaicut"},
+     local Window = MakeWindow({
+    Hub = {
+        Title = "Teddy Hub",
+        Animation = "YTB: Teddy"
+    },
+    Key = {
+        KeySystem = false, -- Đã vô hiệu hóa hệ thống key
+        Title = "",
+        Description = "",
+        KeyLink = "",
+        Keys = {},
         Notifi = {
-        Notifications = true,
-        CorrectKey = "Đang chạy script...",
-       Incorrectkey = "Key sai",
-       CopyKeyLink = "Đã sao chép"
-      }
+            Notifications = false,
+            CorrectKey = "",
+            Incorrectkey = "",
+            CopyKeyLink = ""
+        }
     }
-  })
+})
+
 
        MinimizeButton({
        Image = "http://www.roblox.com/asset/?id=76190632660322",
