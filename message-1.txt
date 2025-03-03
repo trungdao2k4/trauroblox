@@ -1,6 +1,6 @@
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V2/refs/heads/main/UiREDzV2.lua")))()
 
-      local Window = MakeWindow({
+       local Window = MakeWindow({
          Hub = {
          Title = "Teddy Hub",
          Animation = "YTB: Teddy"
@@ -20,11 +20,8 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V
     }
   })
 
-
-
-
        MinimizeButton({
-       Image = "http://www.roblox.com/asset/?id=130160749337944",
+       Image = "http://www.roblox.com/asset/?id=76190632660322",
        Size = {50, 50},
        Color = Color3.fromRGB(10, 10, 10),
        Corner = true,
@@ -39,7 +36,7 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V
 -------TOGGLE 
 
      Toggle = AddToggle(Tab1o, {
-      Name = "YTB: Trẩu Roblox",
+      Name = "YTB: Teddy Hub",
       Default = true,
       Callback = function()
      end
@@ -59,4 +56,28 @@ end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/AnDepZaiHub/AnBeoDepTrai/refs/heads/main/Dough_King"))()
 end
 })
-
+AddButton(Tab1o, {
+     Name = "Auto Hop Mirage island (Wait Update)",
+    Callback = function()
+end
+})
+AddButton(Tab1o, {
+     Name = "Auto Hop Black beard boss (Wait Update)",
+    Callback = function()
+end
+})
+AddButton(Tab1o, {
+     Name = "Auto Hop legendery sword (Wait Update)",
+    Callback = function()
+end
+})
+AddButton(Tab1o, {
+     Name = "Auto Hop Full Moon (Wait Update)",
+    Callback = function()
+end
+})
+AddButton(Tab1o, {
+     Name = "Auto Hop Haki Legendery (Wait Update)",
+    Callback = function()
+end
+})
