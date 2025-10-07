@@ -7383,7 +7383,7 @@ end)
 	end)                   
 	local Q = Tabs.Mirage:AddToggle("Q", {
 		Title = "Auto Complete Trial Race",
-		Description = "",
+		Description = "Hoàn thành nhiệm vụ up tộc",
 		Default = false
 	})
 	Q:OnChanged(function(Value)
@@ -7494,7 +7494,7 @@ end)
 	end)
 	local Q = Tabs.Mirage:AddToggle("Q", {
 		Title = "Auto Kill Player After Trial",
-		Description = "turn on for kill player after the race trials",
+		Description = "Bật chế độ tiêu diệt người chơi sau khi hoàn thành Race Trials",
 		Default = false
 	})
 	Q:OnChanged(function(Value)
