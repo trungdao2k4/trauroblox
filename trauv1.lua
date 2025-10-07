@@ -2862,69 +2862,61 @@
 	end
 	if World3 then
 	local CastleRaids = Tabs.Main:AddToggle("CastleRaids", {
-		Title = "Auto Pirate Raid",
-		Description = "Auto Đánh Hải Tặc",
-		Default = false
-	})
-	CastleRaids:OnChanged(function(Value)
-		_G.AutoRaidCastle = Value
-	end)
-	spawn(function()
-		while wait(Sec) do
-			if _G.AutoRaidCastle then
-				pcall(function()
-					local CFrameCastleRaid = CFrame.new(-5496.17432, 313.768921, -2841.53027, 0.924894512, 7.37058015e-09, 0.380223751, 3.5881019e-08, 1, -1.06665446e-07, -0.380223751, 1.12297109e-07, 0.924894512)
-					if (CFrame.new(-5539.3115234375, 313.800537109375, -2972.372314453125).Position - Root.Position).Magnitude <= 500 then
-						for i, v in pairs(workspace.Enemies:GetChildren()) do
-							if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-								if v.Name then
-									if (v.HumanoidRootPart.Position - Root.Position).Magnitude <= 2000 then
-										repeat
-											wait()
-											Attack.Kill(v, _G.AutoRaidCastle)
-										until not _G.AutoRaidCastle or not v.Parent or v.Humanoid.Health <= 0 or not workspace.Enemies:FindFirstChild(v.Name)
-									end
-								end
-							end
-						end
-					else
-						local Castle_Mob = {
-							"Galley Pirate",
-							"Galley Captain",
-							"Raider",
-							"Mercenary",
-							"Vampire",
-							"Zombie",
-							"Snow Trooper",
-							"Winter Warrior",
-							"Lab Subordinate",
-							"Horned Warrior",
-							"Magma Ninja",
-							"Lava Pirate",
-							"Ship Deckhand",
-							"Ship Engineer",
-							"Ship Steward",
-							"Ship Officer",
-							"Arctic Warrior",
-							"Snow Lurker",
-							"Sea Soldier",
-							"Water Fighter"
-						}
-						for i = 1, #Castle_Mob do
-							if replicated:FindFirstChild(Castle_Mob[i]) then
-								for _, v in pairs(replicated:GetChildren()) do
-									if table.find(Castle_Mob, v.Name) then
-										_tp(CFrameCastleRaid)
-									end
-								end
+	Title = "Auto Pirate Raid",
+	Description = "Auto Đánh Hải Tặc",
+	Default = false
+})
+
+CastleRaids:OnChanged(function(Value)
+	_G.AutoRaidCastle = Value
+end)
+
+spawn(function()
+	while wait(Sec) do
+		if _G.AutoRaidCastle then
+			pcall(function()
+				-- Kiểm tra Root tồn tại
+				if not Root or not Root.Parent then
+					return
+				end
+				
+				local CFrameCastleRaid = CFrame.new(-5496.17432, 313.768921, -2841.53027, 0.924894512, 7.37058015e-09, 0.380223751, 3.5881019e-08, 1, -1.06665446e-07, -0.380223751, 1.12297109e-07, 0.924894512)
+				local CastlePosition = CFrame.new(-5539.3115234375, 313.800537109375, -2972.372314453125).Position
+				
+				-- Nếu đã ở gần Castle (trong phạm vi 500 studs)
+				if (CastlePosition - Root.Position).Magnitude <= 500 then
+					-- Farm quái gần nhất
+					local targetFound = false
+					for i, v in pairs(workspace.Enemies:GetChildren()) do
+						if _G.AutoRaidCastle and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+							if (v.HumanoidRootPart.Position - Root.Position).Magnitude <= 2000 then
+								targetFound = true
+								repeat
+									wait()
+									if not _G.AutoRaidCastle then break end
+									Attack.Kill(v, _G.AutoRaidCastle)
+								until not _G.AutoRaidCastle or not v.Parent or v.Humanoid.Health <= 0
+								break -- Giết 1 quái rồi thoát để tìm quái tiếp theo
 							end
 						end
 					end
-				end)
-			end
+				else
+					-- Nếu chưa ở Castle, kiểm tra xem có quái spawn không
+					local Castle_Mob = {
+						"Galley Pirate", "Galley Captain", "Raider", "Mercenary",
+						"Vampire", "Zombie", "Snow Trooper", "Winter Warrior",
+						"Lab Subordinate", "Horned Warrior", "Magma Ninja", "Lava Pirate",
+						"Ship Deckhand", "Ship Engineer", "Ship Steward", "Ship Officer",
+						"Arctic Warrior", "Snow Lurker", "Sea Soldier", "Water Fighter"
+					}
+				_tp(CFrameCastleRaid)
+						wait(1)	
+				end
+			end)
 		end
-	end)
 	end
+end)			
+end
 	Test = Tabs.Main:AddDropdown("Test", {
 		Title = "Choose Material",
 		Values = MaterialList,
