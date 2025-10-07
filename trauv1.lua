@@ -7492,7 +7492,7 @@
 	Tabs.Drago:AddSection("Dojo Quest & Drago Race")
 	local DojoQ = Tabs.Drago:AddToggle("DojoQ", {
 		Title = "Auto Dojo Trainer",
-		Description = "turn on for do dojo belt quest white to black",
+		Description = "Bật chế độ làm nhiệm vụ Dojo Belt từ đai trắng đến đai đen",
 		Default = false
 	})
 	DojoQ:OnChanged(function(Value)
@@ -7606,7 +7606,7 @@
 	end)
 	local BlazeEM = Tabs.Drago:AddToggle("BlazeEM", {
 		Title = "Auto Dragon Hunter",
-		Description = "turn on for farm blaze ember + auto collect blaze ember",
+		Description = "Bật chế độ farm Blaze Ember và tự động thu thập Blaze Ember",
 		Default = false
 	})
 	BlazeEM:OnChanged(function(Value)
@@ -7891,7 +7891,7 @@
 				pcall(function()
 					if workspace.Map:FindFirstChild("DracoTrial") then
 						replicated.Remotes.DracoTrial:InvokeServer()
-						wait(5)
+						wait(10)
 						repeat
 							wait()
 							_tp(CFrame.new(-39934.9765625, 10685.359375, 22999.34375))
@@ -7900,7 +7900,7 @@
 							wait()
 							_tp(CFrame.new(-40511.25390625, 9376.4013671875, 23458.37890625))
 						until not _G.Relic123 or (Root.Position == CFrame.new(-40511.25390625, 9376.4013671875, 23458.37890625).Position)
-						wait(5)
+						wait(10)
 						repeat
 							wait()
 							_tp(CFrame.new(-39914.65625, 10685.384765625, 23000.177734375))
@@ -7909,7 +7909,7 @@
 							wait()
 							_tp(CFrame.new(-40045.83203125, 9376.3984375, 22791.287109375))
 						until not _G.Relic123 or (Root.Position == CFrame.new(-40045.83203125, 9376.3984375, 22791.287109375).Position)
-						wait(5)
+						wait(10)
 						repeat
 							wait()
 							_tp(CFrame.new(-39908.5, 10685.4052734375, 22990.04296875))
