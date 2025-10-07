@@ -2097,7 +2097,7 @@
 			Title = "Đảo Drago Dojo"
 		}),
 		Prehistoric = Window:AddTab({
-			Title = "Tiền sử"
+			Title = "Prehistoric Event"
 		}),
 		Raids = Window:AddTab({
 			Title = "Đột kích"
@@ -5863,82 +5863,6 @@ end)
 			end
 		end
 	end)
-
-	Tabs.Quests:AddSection("Pole / God Enal's")
-	local Q = Tabs.Quests:AddToggle("Q", {
-		Title = "Auto Pole V1",
-		Description = "",
-		Default = false
-	})
-	Q:OnChanged(function(Value)
-		_G.AutoPole = Value
-	end)
-	spawn(function()
-		while wait(Sec) do
-			if _G.AutoPole then
-				pcall(function()
-					local v = GetConnectionEnemies("Thunder God")
-					if v then
-						repeat
-							task.wait()
-							Attack.Kill(v, _G.AutoPole)
-						until not _G.AutoPole or not v.Parent or v.Humanoid.Health <= 0
-					else
-						_tp(CFrame.new(-7994.984375, 5761.025390625, -2088.6479492188))
-					end
-				end)
-			end
-		end
-	end)
-	local Q = Tabs.Quests:AddToggle("Q", {
-		Title = "Auto Pole V2 [Beta]",
-		Description = "",
-		Default = false
-	})
-	Q:OnChanged(function(Value)
-		_G.AutoPoleV2 = Value
-	end)
-	spawn(function()
-		while wait(Sec) do
-			pcall(function()
-				if _G.AutoPoleV2 then
-					if not GetBP("Pole (1st Form)") then
-						replicated.Remotes.CommF_:InvokeServer("LoadItem", "Pole (1st Form)")
-					end
-					if not GetBP("Pole (2nd Form)") then
-						replicated.Remotes.CommF_:InvokeServer("LoadItem", "Pole (2nd Form)")
-					end
-					if GetBP("Pole (1st Form)") and GetBP("Pole (1st Form)").Level.Value <= 179 then
-						_G.Level = true
-					elseif GetBP("Pole (1st Form)") and GetBP("Pole (1st Form)").Level.Value >= 180 then
-						_G.Level = false
-					end
-					if not GetBP("Rumble Fruit") then
-						return
-					end
-					if GetBP("Rumble Fruit").AwakenedMoves:FindFirstChild("Z") and GetBP("Rumble Fruit").AwakenedMoves:FindFirstChild("X") and GetBP("Rumble Fruit").AwakenedMoves:FindFirstChild("C") and GetBP("Rumble Fruit").AwakenedMoves:FindFirstChild("V") and GetBP("Rumble Fruit").AwakenedMoves:FindFirstChild("F") then
-						_G.SelectChip = nil
-						_G.Raiding = false
-						_G.Auto_Awakener = false
-						if plr.Data.Fragments.Value >= 5000 then
-							replicated.Remotes.CommF_:InvokeServer("Thunder God", "Talk")
-							wait(Sec)
-							replicated.Remotes.CommF_:InvokeServer("Thunder God", "Sure")
-						end
-					elseif replicated.Remotes.CommF_:InvokeServer("Awakener", "Check") == nil or replicated.Remotes.CommF_:InvokeServer("Awakener", "Check") == 0 then
-						_G.SelectChip = "Rumble"
-						local Buying = replicated.Remotes.CommF_:InvokeServer("RaidsNpc", "Select", _G.SelectChip)
-						if Buying then
-							Buying:Stop()
-						end
-						_G.Raiding = true
-						_G.Auto_Awakener = true
-					end
-				end
-			end)
-		end
-	end)
-
 	Tabs.Quests:AddSection("Items Law/Order Sword")
 	local Q = Tabs.Quests:AddToggle("Q", {
 		Title = "Auto Law Sword",
@@ -7839,7 +7763,7 @@ end)
 	end)
 	Toggle = Tabs.Drago:AddToggle("Toggle", {
 		Title = "Auto Drago (V1)",
-		Description = "turn on for auto quest1 auto prehistoric event + collect dragon eggs",
+		Description = "Bật để tự động làm Nhiệm Vụ 1, tự động sự kiện Tiền Sử và thu thập Trứng Rồng",
 		Default = false
 	})
 	Toggle:OnChanged(function(Value)
@@ -7866,7 +7790,7 @@ end)
 	end)
 	local fireflower = Tabs.Drago:AddToggle("fireflower", {
 		Title = "Auto Drago (V2)",
-		Description = "turn on for auto kill Forest Pirate & Collect fireflower",
+		Description = "Bật để tự động tiêu diệt Hải Tặc Rừng và thu thập Hoa Lửa",
 		Default = false
 	})
 	fireflower:OnChanged(function(Value)
@@ -7906,7 +7830,7 @@ end)
 	end)
 	Toggle = Tabs.Drago:AddToggle("Toggle", {
 		Title = "Auto Drago (V3)",
-		Description = "turn on for sea event kill terror shark",
+		Description = "Bật để tham gia sự kiện biển và tiêu diệt Terro Shark",
 		Default = false
 	})
 	Toggle:OnChanged(function(Value)
@@ -7931,7 +7855,7 @@ end)
 	end)
 	Toggle = Tabs.Drago:AddToggle("Toggle", {
 		Title = "Auto Relic Drago Trial ",
-		Description = "AUTO THỨC TỈNH TỘC RỒNG LỘN V4",
+		Description = "Tự động thực hiện Thử Thách Tộc Drago",
 		Default = false
 	})
 	Toggle:OnChanged(function(Value)
@@ -7982,7 +7906,7 @@ end)
 	end)
 	Toggle = Tabs.Drago:AddToggle("Toggle", {
 		Title = "Auto Train Drago v4",
-		Description = "AUTO TRAIN VÀ MUA GEAR TỘC RỒNG LỘN",
+		Description = "Tự động luyện Drago V4",
 		Default = false
 	})
 	Toggle:OnChanged(function(Value)
@@ -8093,7 +8017,7 @@ end)
 	Tabs.Prehistoric:AddSection("Volcanic Magnet")
 	Toggle = Tabs.Prehistoric:AddToggle("Toggle", {
 		Title = "Auto Craft Volcanic Magnet",
-		Description = "turn on for auto farm material and craft volcanic magnet & stop when you have 1 volcanic magnet",
+		Description = "Bật để tự động farm nguyên liệu và chế tạo Nam Châm Núi Lửa, dừng lại khi bạn có 1 Nam Châm Núi Lửa",
 		Default = false
 	})
 	Toggle:OnChanged(function(Value)
@@ -8151,7 +8075,7 @@ end)
 	end)
 	Vocan = Tabs.Prehistoric:AddToggle("Vocan", {
 		Title = "Auto Find Prehistoric Island",
-		Description = "turn on for finding & tween & start prehistoric island",
+		Description = "Bật để tìm, di chuyển và bắt đầu Đảo Tiền Sử",
 		Default = false
 	})
 	Vocan:OnChanged(function(Value)
@@ -8209,7 +8133,7 @@ end)
 	end)
 	local Vocan = Tabs.Prehistoric:AddToggle("Vocan", {
 		Title = "Auto Patch Prehistoric Event",
-		Description = "turn on for auto patch volcano + kill aura lava golems + auto remove lava",
+		Description = "Bật để tự động vá khu núi lửa + tự động đánh Golem dung nham + tự động loại bỏ dung nham",
 		Default = false
 	})
 	Vocan:OnChanged(function(Value)
@@ -8291,7 +8215,7 @@ end)
 	end)
 	local Vocan = Tabs.Prehistoric:AddToggle("Vocan", {
 		Title = "Auto Collect Dino Bones",
-		Description = "",
+		Description = "Tự động thu thập Xương Khủng Long",
 		Default = false
 	})
 	Vocan:OnChanged(function(Value)
@@ -8314,7 +8238,7 @@ end)
 	end)
 	local Vocan = Tabs.Prehistoric:AddToggle("Vocan", {
 		Title = "Auto Collect Dragon Eggs",
-		Description = "",
+		Description = "Tự động thu thập Trứng Rồng",
 		Default = false
 	})
 	Vocan:OnChanged(function(Value)
@@ -8334,7 +8258,7 @@ end)
 	end)
 	Toggle = Tabs.Prehistoric:AddToggle("Toggle", {
 		Title = "Auto Reset When Complete Volcano",
-		Description = "Reset When Complete Volcano not collect dino bones and else..",
+		Description = "Reset khi hoàn thành Volcano, không thu thập xương khủng long và những thứ khác.",
 		Default = false
 	})
 	Toggle:OnChanged(function(Value)
