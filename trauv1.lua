@@ -7340,21 +7340,21 @@ spawn(function()
 end)
 	Tabs.Mirage:AddButton({
 		Title = "Teleport to Ancient One",
-		Description = "",
+		Description = "Chỉ dùng khi đã vào Temple Of The Time",
 		Callback = function()
 			notween(CFrame.new(28981.552734375, 14888.4267578125, - 120.245849609375))
 		end
 	})
 	Tabs.Mirage:AddButton({
 		Title = "Teleport to Ancient Clock",
-		Description = "",
+		Description = "Chỉ dùng khi đã vào Temple Of The Time",
 		Callback = function()
 			notween(CFrame.new(29549, 15069, -88))
 		end
 	})
 	local Q = Tabs.Mirage:AddToggle("Q", {
 		Title = "Auto Teleport to Race Doors",
-		Description = "",
+		Description = "Chỉ dùng khi đã vào Temple Of The Time",
 		Default = false
 	})
 	Q:OnChanged(function(Value)
