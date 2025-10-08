@@ -2001,7 +2001,7 @@
 
 	local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 	local Window = Fluent:CreateWindow({
-		Title = "Trẩu roblox [ FREE ]",
+		Title = "Trẩu roblox [ FREE V2]",
 		SubTitle = "  by trauroblox",
 		TabWidth = 160,
 		Theme = "Dark",
