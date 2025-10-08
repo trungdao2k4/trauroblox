@@ -2001,7 +2001,7 @@
 
 	local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 	local Window = Fluent:CreateWindow({
-		Title = "Trẩu roblox [ FREE ]",
+		Title = "Trẩu roblox [ FREE V1]",
 		SubTitle = "  by trauroblox",
 		TabWidth = 160,
 		Theme = "Dark",
@@ -7730,7 +7730,7 @@ end)
 		return replicated.Modules.Net:FindFirstChild("RF/InteractDragonQuest"):InvokeServer(unpack(v371))
 	end
 	Toggle = Tabs.Drago:AddToggle("Toggle", {
-		Title = "Tween To Upgrade Droco Trial",
+		Title = "Tween To Upgrade Draco Trial",
 		Description = "",
 		Default = false
 	})
@@ -10251,7 +10251,6 @@ end)
 			"Mansion Cafe",
 			"Hydra Teleport",
 			"Canvendish Room",
-			"Temple of Time"
 		}
 	end
 
