@@ -37,7 +37,7 @@
 	World1 = game.PlaceId == 2753915549
 	World2 = game.PlaceId == 4442272183
 	World3 = game.PlaceId == 7449423635
-	Sea = World1 or World2 or World3 or plr:Kick("❌ Error : A[12]Blox Fruits ❌")
+	Sea = World1 or World2 or World3 or plr:Kick("❌ Không Hỗ Trợ Game Này ❌")
 	Marines = function()
 		replicated.Remotes.CommF_:InvokeServer("SetTeam", "Marines")
 	end
@@ -776,18 +776,68 @@
 			VisionRadius.Value = math.huge
 		end
 	end
-	Hop = function()
-		pcall(function()
-			for count = math.random(1, math.random(40, 75)), 100 do
-				local remote = replicated.__ServerBrowser:InvokeServer(count)
-				for _, v in next, remote do
-					if tonumber(v['Count']) < 12 then
-						TeleportService:TeleportToPlaceInstance(game.PlaceId, _)
-					end
-				end
-			end
-		end)
-	end
+	function Hop()
+    local PlaceID = game.PlaceId
+    local AllIDs = {}
+    local foundAnything = ""
+    local actualHour = os.date("!*t").hour
+    local Deleted = false
+    function TPReturner()
+        local Site;
+        if foundAnything == "" then
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+        else
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+        end
+        local ID = ""
+        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+            foundAnything = Site.nextPageCursor
+        end
+        local num = 0;
+        for i,v in pairs(Site.data) do
+            local Possible = true
+            ID = tostring(v.id)
+            if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                for _,Existing in pairs(AllIDs) do
+                    if num ~= 0 then
+                        if ID == tostring(Existing) then
+                            Possible = false
+                        end
+                    else
+                        if tonumber(actualHour) ~= tonumber(Existing) then
+                            local delFile = pcall(function()                                
+                                AllIDs = {}
+                                table.insert(AllIDs, actualHour)
+                            end)
+                        end
+                    end
+                    num = num + 1
+                end
+                if Possible == true then
+                    table.insert(AllIDs, ID)
+                    wait(.1)
+                    pcall(function()
+                        
+                        wait()
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                    end)
+                    wait(.1)
+                end
+            end
+        end
+    end
+    function Teleport() 
+        while wait(.1) do
+            pcall(function()
+                TPReturner()
+                if foundAnything ~= "" then
+                    TPReturner()
+                end
+            end)
+        end
+    end
+    Teleport()
+end
 	local block = Instance.new("Part", workspace)
 	block.Size = Vector3.new(1, 1, 1)
 	block.Name = "Rip_Indra"
@@ -2252,11 +2302,9 @@ end)
 		while wait(Sec) do
 			if _G.FarmBoss then
 				pcall(function()
-					-- Kiểm tra boss có quest hay không
 					local HasQuest = QuestBeta()[2] ~= nil and QuestBeta()[3] ~= nil
 					
 					if HasQuest then
-						-- BOSS CÓ QUEST
 						local QuestTitle = plr.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
 						
 						if not string.find(QuestTitle, QuestBeta()[0]) then
@@ -2294,7 +2342,6 @@ end)
 						end
 						
 					else
-						-- BOSS KHÔNG CÓ QUEST - Farm trực tiếp
 						if workspace.Enemies:FindFirstChild(QuestBeta()[1]) then
 							for i, v in pairs(workspace.Enemies:GetChildren()) do
 								if Attack.Alive(v) then
@@ -10708,7 +10755,6 @@ end)
 		Description = "Tạo server riêng và teleport (cần >1 người)",
 		Callback = function()
 			task.spawn(function()
-				-- MD5 và các hàm hỗ trợ
 				local md5 = {}
 				local hmac = {}
 				local base64 = {}
