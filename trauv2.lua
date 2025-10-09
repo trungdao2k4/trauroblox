@@ -10970,6 +10970,24 @@ end)
 			end)
 		end
 	})
+		local HopAntiBanToggle = Tabs.Server:AddToggle("HopAntiBan", {
+	Title = "Hop để Anti Ban",
+	Description = "Hop server mỗi 30 phút để tránh reset vui lòng không tắt",
+	Default = true,
+	Callback = function(value)
+		_G.HopAntiBan = value
+	end
+})
+
+spawn(function()
+	while wait(1800) do
+		if _G.HopAntiBan then
+			pcall(function()
+				Hop()
+			end)
+		end
+	end
+end)
 	Tabs.Server:AddButton({
 		Title = "Rejoin Server",
 		Description = "",
@@ -10977,6 +10995,7 @@ end)
 			game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
 		end
 	})
+
 	Tabs.Server:AddButton({
 		Title = "Hop Server",
 		Description = "",
