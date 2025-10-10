@@ -2124,18 +2124,18 @@
 		})
 
 		Window:AddMinimizeButton({
-			Button = { Image = "rbxassetid://130160749337944", BackgroundTransparency = 0 },
-			Corner = { CornerRadius = UDim.new(0, 5) },
+			Button = { Image = "rbxassetid://130160749337944" },
+			
 		})
 
 		-- Tab Discord
 		local Tab = Window:MakeTab({"Discord", "info"})
 
 		Tab:AddDiscordInvite({
-			Name = "redz Hub | Community",
+			Name = "Trẩu Roblox Và Anh Em | Community",
 			Description = "Join our discord community to receive information about the next update",
-			Logo = "rbxassetid://95105936784502",
-			Invite = "http://discord.gg/7aR7kNVt4g",
+			Logo = "rbxassetid://130160749337944",
+			Invite = "https://discord.gg/s8R9b5NfsU ",
 		})
 
 
