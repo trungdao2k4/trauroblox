@@ -6699,24 +6699,24 @@
 	Description = "Use your lowest fruit in your bag",
 	Callback = function()
 		if GetBP("Special Microchip") then
-		return
-		end
-		local FruitPrice = {}
-		local FruitStore = {}
-		for i, v in next, replicated:WaitForChild("Remotes").CommF_:InvokeServer("GetFruits") do
-		if v.Price <= 490000 then
-			table.insert(FruitPrice, v.Name)
-		end
-		end
-		for _, y in pairs(FruitPrice) do
-		for i, v in pairs(DungeonTables) do
-			if not GetBP("Special Microchip") then
-			replicated.Remotes.CommF_:InvokeServer("LoadFruit", tostring(y))
-			replicated.Remotes.CommF_:InvokeServer("RaidsNpc", "Select", _G.SelectChip)
+				return
+			end
+			local FruitPrice = {}
+			local FruitStore = {}
+			for i, v in next, replicated:WaitForChild("Remotes").CommF_:InvokeServer("GetFruits") do
+				if v.Price <= 490000 then
+					table.insert(FruitPrice, v.Name)
+				end
+			end
+			for _, y in pairs(FruitPrice) do
+				for i, v in pairs(DungeonTables) do
+					if not GetBP("Special Microchip") then
+						replicated.Remotes.CommF_:InvokeServer("LoadFruit", tostring(y))
+						replicated.Remotes.CommF_:InvokeServer("RaidsNpc", "Select", _G.SelectChip)
+					end
+				end
 			end
 		end
-		end
-	end
 	})
 
 	Tab4:AddSection({
@@ -6734,55 +6734,55 @@
 	})
 
 	spawn(function()
-	while wait(Sec) do
-		pcall(function()
-		if _G.Auto_StartRaid then
-			if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
-			if GetBP("Special Microchip") then
-				if World2 then
-				local npcPos = CFrame.new(-6438.73535, 250.645355, -4501.50684)
-				
-				-- Bay đến NPC
-				repeat
-					wait()
-					_tp(npcPos)
-				until not _G.Auto_StartRaid or (plr.Character.HumanoidRootPart.Position - npcPos.Position).Magnitude < 10
-				
-				-- Đã đến gần NPC, đợi thêm chút
-				wait(0.5)
-				
-				-- Mới click start raid
-				if _G.Auto_StartRaid and plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
-					fireclickdetector(workspace.Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
-				end
-				
-				elseif World3 then
-				-- Request entrance
-				replicated.Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-5097.93164, 316.447021, -3142.66602, -0.405007899, -4.31682743e-08, 0.914313197, -1.90943332e-08, 1, 3.8755779e-08, -0.914313197, -1.76180437e-09, -0.405007899))
-				wait(1)
-				
-				local npcPos = CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818)
-				
-				-- Bay đến NPC
-				repeat
-					wait()
-					_tp(npcPos)
-				until not _G.Auto_StartRaid or (plr.Character.HumanoidRootPart.Position - npcPos.Position).Magnitude < 10
-				
-				-- Đã đến gần NPC, đợi thêm chút
-				wait(0.5)
-				
-				-- Mới click start raid
-				if _G.Auto_StartRaid and plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
-					fireclickdetector(workspace.Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
-				end
-				end
-			end
-			end
-		end
-		end)
-	end
-	end)
+    while wait(Sec) do
+        pcall(function()
+            if _G.Auto_StartRaid then
+                if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
+                    if GetBP("Special Microchip") then
+                        if World2 then
+                            local npcPos = CFrame.new(-6438.73535, 250.645355, -4501.50684)
+                            
+                            -- Bay đến NPC
+                            repeat
+                                wait()
+                                _tp(npcPos)
+                            until not _G.Auto_StartRaid or (plr.Character.HumanoidRootPart.Position - npcPos.Position).Magnitude < 10
+                            
+                            -- Đã đến gần NPC, đợi thêm chút
+                            wait(0.5)
+                            
+                            -- Mới click start raid
+                            if _G.Auto_StartRaid and plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
+                                fireclickdetector(workspace.Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
+                            end
+                            
+                        elseif World3 then
+                            -- Request entrance
+                            replicated.Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-5097.93164, 316.447021, -3142.66602, -0.405007899, -4.31682743e-08, 0.914313197, -1.90943332e-08, 1, 3.8755779e-08, -0.914313197, -1.76180437e-09, -0.405007899))
+                            wait(1)
+                            
+                            local npcPos = CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818)
+                            
+                            -- Bay đến NPC
+                            repeat
+                                wait()
+                                _tp(npcPos)
+                            until not _G.Auto_StartRaid or (plr.Character.HumanoidRootPart.Position - npcPos.Position).Magnitude < 10
+                            
+                            -- Đã đến gần NPC, đợi thêm chút
+                            wait(0.5)
+                            
+                            -- Mới click start raid
+                            if _G.Auto_StartRaid and plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
+                                fireclickdetector(workspace.Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
 
 	local TeleportToLab = Tab4:AddToggle({
 	Name = "Teleport To Lab",
