@@ -2118,7 +2118,7 @@
 		local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
 
 		local Window = redzlib:MakeWindow({
-		Title = "Trẩu roblox",
+		Title = "Trẩu Roblox",
 		SubTitle = "by trauroblox",
 		SaveFolder = "Redz | redz lib v5.lua"
 		})
@@ -10448,4 +10448,5 @@ end)
 			end)
 		end)
 		Window:SelectTab(1)
+
 
