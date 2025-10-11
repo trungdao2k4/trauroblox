@@ -6809,8 +6809,8 @@ end)
 	})
 
 	local AutoCompleteRaid = Tab4:AddToggle({
-	Name = "Auto Complete Raid [Safety]",
-	Description = "",
+	Name = "Auto Complete Raid",
+	Description = "Nên vào Server Vip trong Tab Server Raid",
 	Default = false,
 	Flag = "AutoCompleteRaid",
 	Callback = function(Value)
@@ -6819,32 +6819,54 @@ end)
 	})
 
 	spawn(function()
-  pcall(function() 
-    while wait(Sec) do
-      if _G.Raiding then  
-        if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == true then          
-          local islands = {"Island5","Island 4", "Island 3", "Island 2", "Island 1"}
-          for _, island in ipairs(islands) do
-          local location = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild(island)
-            if location then
-              for i,v in pairs(workspace.Enemies:GetChildren()) do
-                if v:FindFirstChild("Humanoid") or v:FindFirstChild("HumanoidRootPart") then
-                  if v.Humanoid.Health > 0 then
-                    repeat wait() Attack.Kill(v,_G.Raiding) NextIs=false until not _G.Raiding or not v.Parent or v.Humanoid.Health <= 0 NextIs=true
-                  end
-                end
-              end
-            end
-          end
-        else
-          NextIs = false
-        end
-      else
-        NextIs = false
-      end
-    end
-  end)
-end)
+	pcall(function()
+		while wait(Sec) do
+		if _G.Raiding then
+			if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == true then
+			local islands = {
+				"Island 5",
+				"Island 4",
+				"Island 3",
+				"Island 2",
+				"Island 1"
+			}
+			
+			local foundEnemies = false
+			
+			for _, island in ipairs(islands) do
+				local location = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild(island)
+				if location then
+				for i, v in pairs(workspace.Enemies:GetChildren()) do
+					if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
+					if v.Humanoid.Health > 0 then
+						local distance = (v.HumanoidRootPart.Position - location.Position).Magnitude
+						if distance < 500 then
+						foundEnemies = true
+						repeat
+							wait(Sec)
+							Attack.Kill(v, _G.Raiding)
+						until not _G.Raiding or not v.Parent or v.Humanoid.Health <= 0
+						end
+					end
+					end
+				end
+				
+				if foundEnemies then
+					break
+				end
+				end
+			end
+			NextIs = not foundEnemies
+			
+			else
+			NextIs = false
+			end
+		else
+			NextIs = false
+		end
+		end
+	end)
+	end)
 
 	local AutoNextIsland = Tab4:AddToggle({
 	Name = "Auto Next Island",
