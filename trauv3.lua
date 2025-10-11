@@ -6818,50 +6818,35 @@ end)
 	end
 	})
 spawn(function()
-    pcall(function()
+    pcall(function() 
         while wait(Sec) do
-            if _G.Raiding then
-                if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == true then
-                    local islands = {
-                        "Island 5",
-                        "Island 4",
-                        "Island 3",
-                        "Island 2",
-                        "Island 1"
-                    }
-                    
-                    local foundEnemies = false
-                    
+            if _G.Raiding then  
+                if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == true then          
+                    local islands = {"Island5", "Island 4", "Island 3", "Island 2", "Island 1"}
                     for _, island in ipairs(islands) do
                         local location = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild(island)
                         if location then
-                            
-                            -- FARM HẾT TẤT CẢ QUÁI Ở ISLAND NÀY
                             for i, v in pairs(workspace.Enemies:GetChildren()) do
-                                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
                                     if v.Humanoid.Health > 0 then
-                                        local distance = (v.HumanoidRootPart.Position - location.Position).Magnitude
-                                        if distance < 500 then
-                                            foundEnemies = true
-                                            repeat
-                                                wait()
-                                                Attack.Kill(v, _G.Raiding)
-                                            until not _G.Raiding or not v.Parent or v.Humanoid.Health <= 0
+                                        local playerPos = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character.HumanoidRootPart.Position
+                                        local enemyPos = v.HumanoidRootPart.Position
+                                        if playerPos and enemyPos then
+                                            local distance = (playerPos - enemyPos).Magnitude
+                                            if distance <= 300 then
+                                                repeat
+                                                    wait()
+                                                    Attack.Kill(v, _G.Raiding)
+                                                    NextIs = false
+                                                until not _G.Raiding or not v.Parent or v.Humanoid.Health <= 0
+                                                NextIs = true
+                                            end
                                         end
                                     end
                                 end
                             end
-                            
-                            -- Nếu đã farm quái ở island này, break để check lại từ đầu
-                            if foundEnemies then
-                                break
-                            end
                         end
                     end
-                    
-                    -- Set NextIs chỉ khi KHÔNG tìm thấy quái
-                    NextIs = not foundEnemies
-                    
                 else
                     NextIs = false
                 end
@@ -10448,5 +10433,6 @@ end)
 			end)
 		end)
 		Window:SelectTab(1)
+
 
 
