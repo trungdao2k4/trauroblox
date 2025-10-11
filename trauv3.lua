@@ -6810,63 +6810,63 @@ end)
 
 	local AutoCompleteRaid = Tab4:AddToggle({
 	Name = "Auto Complete Raid",
-	Description = "Nên vào Server Vip trong Tab Server Raid",
+	Description = "Nên vào Server Vip trong Tab Server để Raid",
 	Default = false,
 	Flag = "AutoCompleteRaid",
 	Callback = function(Value)
 		_G.Raiding = Value
 	end
 	})
-
-	spawn(function()
-	pcall(function()
-		while wait(Sec) do
-		if _G.Raiding then
-			if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == true then
-			local islands = {
-				"Island 5",
-				"Island 4",
-				"Island 3",
-				"Island 2",
-				"Island 1"
-			}
-			
-			local foundEnemies = false
-			
-			for _, island in ipairs(islands) do
-				local location = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild(island)
-				if location then
-				for i, v in pairs(workspace.Enemies:GetChildren()) do
-					if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
-					if v.Humanoid.Health > 0 then
-						local distance = (v.HumanoidRootPart.Position - location.Position).Magnitude
-						if distance < 500 then
-						foundEnemies = true
-						repeat
-							wait(Sec)
-							Attack.Kill(v, _G.Raiding)
-						until not _G.Raiding or not v.Parent or v.Humanoid.Health <= 0
-						end
-					end
-					end
-				end
-				
-				if foundEnemies then
-					break
-				end
-				end
-			end
-			NextIs = not foundEnemies
-			
-			else
-			NextIs = false
-			end
-		else
-			NextIs = false
-		end
-		end
-	end)
-	end)
+spawn(function()
+    while wait(Sec) do
+        pcall(function()
+            if _G.Auto_StartRaid then
+                if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
+                    if GetBP("Special Microchip") then
+                        if World2 then
+                            local npcPos = CFrame.new(-6438.73535, 250.645355, -4501.50684)
+                            
+                            -- Bay đến NPC
+                            repeat
+                                wait()
+                                _tp(npcPos)
+                            until not _G.Auto_StartRaid or (plr.Character.HumanoidRootPart.Position - npcPos.Position).Magnitude < 10
+                            
+                            -- Đã đến gần NPC, đợi thêm chút
+                            wait(0.5)
+                            
+                            -- Mới click start raid
+                            if _G.Auto_StartRaid and plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
+                                fireclickdetector(workspace.Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
+                            end
+                            
+                        elseif World3 then
+                            -- Request entrance
+                            replicated.Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-5097.93164, 316.447021, -3142.66602, -0.405007899, -4.31682743e-08, 0.914313197, -1.90943332e-08, 1, 3.8755779e-08, -0.914313197, -1.76180437e-09, -0.405007899))
+                            wait(1)
+                            
+                            local npcPos = CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818)
+                            
+                            -- Bay đến NPC
+                            repeat
+                                wait()
+                                _tp(npcPos)
+                            until not _G.Auto_StartRaid or (plr.Character.HumanoidRootPart.Position - npcPos.Position).Magnitude < 10
+                            
+                            -- Đã đến gần NPC, đợi thêm chút
+                            wait(0.5)
+                            
+                            -- Mới click start raid
+                            if _G.Auto_StartRaid and plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == false then
+                                fireclickdetector(workspace.Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
 
 	local AutoNextIsland = Tab4:AddToggle({
 	Name = "Auto Next Island",
