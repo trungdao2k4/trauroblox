@@ -68,7 +68,7 @@
 				Boss = {
 					"Diamond",
 					"Jeremy",
-					"Fajita",
+					"Orbitus",
 					"Don Swan",
 					"Smoke Admiral",
 					"Awakened Ice Admiral",
@@ -160,7 +160,7 @@
 				"Captain Elephant"
 			}
 			local Human_v3_Mob = {
-				"Fajita",
+				"Orbitus",
 				"Jeremy",
 				"Diamond"
 			}
@@ -1100,8 +1100,8 @@
 						Qdata = 3;
 						PosQBoss = CFrame.new(636.79943847656, 73.413787841797, 918.00415039063)
 						PosB = CFrame.new(2006.9261474609, 448.95666503906, 853.98284912109)
-					elseif _G.FindBoss == "Fajita" then
-						bMon = "Fajita"
+					elseif _G.FindBoss == "Orbitus" then
+						bMon = "Orbitus"
 						Qname = "MarineQuest3"
 						Qdata = 3;
 						PosQBoss = CFrame.new(-2441.986328125, 73.359344482422, -3217.5324707031)
@@ -10448,3 +10448,4 @@ end)
 			end)
 		end)
 		Window:SelectTab(1)
+
