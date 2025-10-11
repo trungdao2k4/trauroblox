@@ -6819,58 +6819,32 @@ end)
 	})
 
 	spawn(function()
-	pcall(function()
-		while wait(Sec) do
-		if _G.Raiding then
-			if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == true then
-			local islands = {
-				"Island 5",
-				"Island 4",
-				"Island 3",
-				"Island 2",
-				"Island 1"
-			}
-			
-			local foundEnemies = false
-			
-			for _, island in ipairs(islands) do
-				local location = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild(island)
-				if location then
-				-- FARM HẾT TẤT CẢ QUÁI Ở ISLAND NÀY
-				for i, v in pairs(workspace.Enemies:GetChildren()) do
-					if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
-					if v.Humanoid.Health > 0 then
-						local distance = (v.HumanoidRootPart.Position - location.Position).Magnitude
-						if distance < 500 then
-						foundEnemies = true
-						repeat
-							wait(Sec)
-							Attack.Kill(v, _G.Raiding)
-						until not _G.Raiding or not v.Parent or v.Humanoid.Health <= 0
-						end
-					end
-					end
-				end
-				
-				-- Nếu đã farm quái ở island này, break để check lại từ đầu
-				if foundEnemies then
-					break
-				end
-				end
-			end
-			
-			-- Set NextIs chỉ khi KHÔNG tìm thấy quái
-			NextIs = not foundEnemies
-			
-			else
-			NextIs = false
-			end
-		else
-			NextIs = false
-		end
-		end
-	end)
-	end)
+  pcall(function() 
+    while wait(Sec) do
+      if _G.Raiding then  
+        if plr.PlayerGui.Main.TopHUDList.RaidTimer.Visible == true then          
+          local islands = {"Island5","Island 4", "Island 3", "Island 2", "Island 1"}
+          for _, island in ipairs(islands) do
+          local location = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild(island)
+            if location then
+              for i,v in pairs(workspace.Enemies:GetChildren()) do
+                if v:FindFirstChild("Humanoid") or v:FindFirstChild("HumanoidRootPart") then
+                  if v.Humanoid.Health > 0 then
+                    repeat wait() Attack.Kill(v,_G.Raiding) NextIs=false until not _G.Raiding or not v.Parent or v.Humanoid.Health <= 0 NextIs=true
+                  end
+                end
+              end
+            end
+          end
+        else
+          NextIs = false
+        end
+      else
+        NextIs = false
+      end
+    end
+  end)
+end)
 
 	local AutoNextIsland = Tab4:AddToggle({
 	Name = "Auto Next Island",
