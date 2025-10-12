@@ -4671,12 +4671,12 @@
 	end
 	end)
 	end
-local Tab13 = Window:MakeTab({"PVP", "skull"})
-	Tab13:AddSection({
+local Tab14 = Window:MakeTab({"PVP", "skull"})
+	Tab14:AddSection({
   Name = "Combat / Aimbot"
 })
 
-local __indexPlayer = Tab13:AddParagraph({
+local __indexPlayer = Tab14:AddParagraph({
   Title = "All Players On Server :",
   Text = ""
 })
@@ -4697,7 +4697,7 @@ spawn(function()
   end
 end)
 
-local __AimBotTurn = Tab13:AddParagraph({
+local __AimBotTurn = Tab14:AddParagraph({
   Title = "Aimbot Status :",
   Text = ""
 })
@@ -4735,7 +4735,7 @@ for _, v in pairs(game:GetService("Players"):GetChildren()) do
   table.insert(PlrList, v.Name)
 end
 
-local SelectPlayer = Tab13:AddDropdown({
+local SelectPlayer = Tab14:AddDropdown({
   Name = "Choose Players",
   Options = PlrList,
   Multi = false,
@@ -4745,7 +4745,7 @@ local SelectPlayer = Tab13:AddDropdown({
   end
 })
 
-local TeleportToPlayer = Tab13:AddToggle({
+local TeleportToPlayer = Tab14:AddToggle({
   Name = "Teleport to choose players",
   Description = "",
   Default = false,
@@ -4763,7 +4763,7 @@ local TeleportToPlayer = Tab13:AddToggle({
   end
 })
 
-local SpectatePlayer = Tab13:AddToggle({
+local SpectatePlayer = Tab14:AddToggle({
   Name = "Spectate Choose Players",
   Description = "",
   Default = false,
@@ -4778,7 +4778,7 @@ local SpectatePlayer = Tab13:AddToggle({
   end
 })
 
-local ChooseAimMethod = Tab13:AddDropdown({
+local ChooseAimMethod = Tab14:AddDropdown({
   Name = "Choose Aim Method",
   Options = AimbotMethod,
   Multi = false,
@@ -4788,7 +4788,7 @@ local ChooseAimMethod = Tab13:AddDropdown({
   end
 })
 
-local AimbotMethodSkills = Tab13:AddToggle({
+local AimbotMethodSkills = Tab14:AddToggle({
   Name = "Aimbot Method Skills",
   Description = "",
   Default = false,
@@ -4816,6 +4816,62 @@ task.spawn(function()
     end)
   end
 end)
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+getgenv().WalkSpeed = 16
+
+local SpeedToggle = Tab14:AddToggle({
+    Name = "Thay Đổi Tốc Độ Di Chuyển",
+    Description = "",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            local function ApplySpeed()
+                if not Value then return end
+                local Character = Player.Character
+                if Character then
+                    local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+                    if Humanoid then
+                        Humanoid.WalkSpeed = getgenv().WalkSpeed
+                        if SpeedConnection then
+                            SpeedConnection:Disconnect()
+                        end
+                        SpeedConnection = Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+                            if Value then
+                                Humanoid.WalkSpeed = getgenv().WalkSpeed
+                            end
+                        end)
+                    end
+                end
+            end
+            ApplySpeed()
+            Player.CharacterAdded:Connect(ApplySpeed)
+        else
+            if SpeedConnection then
+                SpeedConnection:Disconnect()
+                SpeedConnection = nil
+            end
+            local Character = Player.Character
+            if Character then
+                local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+                if Humanoid then
+                    Humanoid.WalkSpeed = 16
+                end
+            end
+        end
+    end
+})
+local SpeedSlider = Tab14:AddSlider({
+    Name = "Tốc Độ Di Chuyển",
+    Description = "Chọn tốc độ di chuyển cho nhân vật",
+    Default = 100,
+    Min = 16,
+    Max = 500,
+    Increase = 1,
+    Callback = function(Value)
+        getgenv().WalkSpeed = Value
+    end
+})
 	local Tab3 = Window:MakeTab({"Nhiệm Vụ/Vật Phẩm", "swords"})
 	Tab3:AddSection({
 	Name = "Melee Skills"
@@ -10578,6 +10634,7 @@ end)
 			end)
 		end)
 		Window:SelectTab(1)
+
 
 
 
