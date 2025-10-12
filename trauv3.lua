@@ -4671,6 +4671,151 @@
 	end
 	end)
 	end
+local Tab13 = Window:MakeTab({"PVP", "skull"})
+	Tab13:AddSection({
+  Name = "Combat / Aimbot"
+})
+
+local __indexPlayer = Tab13:AddParagraph({
+  Title = "All Players On Server :",
+  Text = ""
+})
+
+spawn(function()
+  while wait(Sec) do
+    pcall(function()
+      for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+        if i == 12 then
+          __indexPlayer:SetDesc("All Players :" .. " " .. i .. " " .. "/" .. " " .. "12" .. " " .. "[Max]")
+        elseif i == 1 then
+          __indexPlayer:SetDesc("All Players  :" .. " " .. i .. " " .. "/" .. " " .. "12")
+        else
+          __indexPlayer:SetDesc("All Players  :" .. " " .. i .. " " .. "/" .. " " .. "12")
+        end
+      end
+    end)
+  end
+end)
+
+local __AimBotTurn = Tab13:AddParagraph({
+  Title = "Aimbot Status :",
+  Text = ""
+})
+
+local AimbotMethod = {
+  "Auto Aimbots"
+}
+
+local Checking_AimStatus = function()
+  if _G.AimCam then
+    return "Aimbot Camera"
+  elseif _G.AimbotGun then
+    return "Aimbot Guns"
+  else
+    return ""
+  end
+end
+
+spawn(function()
+  while wait(.2) do
+    pcall(function()
+      if _G.AimMethod then
+        __AimBotTurn:SetDesc("Aimbot - Skills : True")
+      elseif (_G.AimCam or _G.AimbotGun) and _G.AimMethod then
+        __AimBotTurn:SetDesc("Aimbot - Skills |" .. Checking_AimStatus() .. " :" .. "True")
+      else
+        __AimBotTurn:SetDesc("Aimbot - Skills : False")
+      end
+    end)
+  end
+end)
+
+local PlrList = {}   
+for _, v in pairs(game:GetService("Players"):GetChildren()) do
+  table.insert(PlrList, v.Name)
+end
+
+local SelectPlayer = Tab13:AddDropdown({
+  Name = "Choose Players",
+  Options = PlrList,
+  Multi = false,
+  Flag = "SelectPlayer",
+  Callback = function(Value)
+    _G.PlayersList = Value
+  end
+})
+
+local TeleportToPlayer = Tab13:AddToggle({
+  Name = "Teleport to choose players",
+  Description = "",
+  Default = false,
+  Flag = "TeleportToPlayer",
+  Callback = function(Value)
+    _G.TpPly = Value
+    pcall(function()
+      if _G.TpPly then
+        repeat
+          wait(Sec)
+          _tp(game:GetService("Players")[_G.PlayersList].Character.HumanoidRootPart.CFrame)
+        until not _G.TpPly
+      end
+    end)
+  end
+})
+
+local SpectatePlayer = Tab13:AddToggle({
+  Name = "Spectate Choose Players",
+  Description = "",
+  Default = false,
+  Flag = "SpectatePlayer",
+  Callback = function(Value)
+    SpectatePlys = Value
+    repeat
+      task.wait(.1)
+      workspace.Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.PlayersList).Character.Humanoid
+    until SpectatePlys == false
+    workspace.Camera.CameraSubject = plr.Character.Humanoid
+  end
+})
+
+local ChooseAimMethod = Tab13:AddDropdown({
+  Name = "Choose Aim Method",
+  Options = AimbotMethod,
+  Multi = false,
+  Flag = "ChooseAimMethod",
+  Callback = function(Value)
+    ABmethod = Value
+  end
+})
+
+local AimbotMethodSkills = Tab13:AddToggle({
+  Name = "Aimbot Method Skills",
+  Description = "",
+  Default = false,
+  Flag = "AimbotMethodSkills",
+  Callback = function(Value)
+    _G.AimMethod = Value
+  end
+})
+
+task.spawn(function()
+  while task.wait() do
+    pcall(function()
+      if _G.AimMethod and ABmethod == "Auto Aimbots" then
+        local MaxDistance = math.huge
+        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+          if v.Name ~= plr.Name and v.Team ~= game.Players.LocalPlayer.Team then
+            local Distance = v:DistanceFromCharacter(plr.Character.HumanoidRootPart.Position)
+            if Distance < MaxDistance then
+              MaxDistance = Distance
+              MousePos = v.Character:FindFirstChild("HumanoidRootPart").Position
+            end
+          end
+        end
+      end
+    end)
+  end
+end)
 	local Tab3 = Window:MakeTab({"Nhiệm Vụ/Vật Phẩm", "swords"})
 	Tab3:AddSection({
 	Name = "Melee Skills"
@@ -6529,151 +6674,7 @@
 		end)
 	end
 	end)
-local Tab13 = Window:MakeTab({"PVP", "skull"})
-	Tab13:AddSection({
-  Name = "Combat / Aimbot"
-})
 
-local __indexPlayer = Tab13:AddParagraph({
-  Title = "All Players On Server :",
-  Text = ""
-})
-
-spawn(function()
-  while wait(Sec) do
-    pcall(function()
-      for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-        if i == 12 then
-          __indexPlayer:SetDesc("All Players :" .. " " .. i .. " " .. "/" .. " " .. "12" .. " " .. "[Max]")
-        elseif i == 1 then
-          __indexPlayer:SetDesc("All Players  :" .. " " .. i .. " " .. "/" .. " " .. "12")
-        else
-          __indexPlayer:SetDesc("All Players  :" .. " " .. i .. " " .. "/" .. " " .. "12")
-        end
-      end
-    end)
-  end
-end)
-
-local __AimBotTurn = Tab13:AddParagraph({
-  Title = "Aimbot Status :",
-  Text = ""
-})
-
-local AimbotMethod = {
-  "Auto Aimbots"
-}
-
-local Checking_AimStatus = function()
-  if _G.AimCam then
-    return "Aimbot Camera"
-  elseif _G.AimbotGun then
-    return "Aimbot Guns"
-  else
-    return ""
-  end
-end
-
-spawn(function()
-  while wait(.2) do
-    pcall(function()
-      if _G.AimMethod then
-        __AimBotTurn:SetDesc("Aimbot - Skills : True")
-      elseif (_G.AimCam or _G.AimbotGun) and _G.AimMethod then
-        __AimBotTurn:SetDesc("Aimbot - Skills |" .. Checking_AimStatus() .. " :" .. "True")
-      else
-        __AimBotTurn:SetDesc("Aimbot - Skills : False")
-      end
-    end)
-  end
-end)
-
-local PlrList = {}   
-for _, v in pairs(game:GetService("Players"):GetChildren()) do
-  table.insert(PlrList, v.Name)
-end
-
-local SelectPlayer = Tab13:AddDropdown({
-  Name = "Choose Players",
-  Options = PlrList,
-  Multi = false,
-  Flag = "SelectPlayer",
-  Callback = function(Value)
-    _G.PlayersList = Value
-  end
-})
-
-local TeleportToPlayer = Tab13:AddToggle({
-  Name = "Teleport to choose players",
-  Description = "",
-  Default = false,
-  Flag = "TeleportToPlayer",
-  Callback = function(Value)
-    _G.TpPly = Value
-    pcall(function()
-      if _G.TpPly then
-        repeat
-          wait(Sec)
-          _tp(game:GetService("Players")[_G.PlayersList].Character.HumanoidRootPart.CFrame)
-        until not _G.TpPly
-      end
-    end)
-  end
-})
-
-local SpectatePlayer = Tab13:AddToggle({
-  Name = "Spectate Choose Players",
-  Description = "",
-  Default = false,
-  Flag = "SpectatePlayer",
-  Callback = function(Value)
-    SpectatePlys = Value
-    repeat
-      task.wait(.1)
-      workspace.Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.PlayersList).Character.Humanoid
-    until SpectatePlys == false
-    workspace.Camera.CameraSubject = plr.Character.Humanoid
-  end
-})
-
-local ChooseAimMethod = Tab13:AddDropdown({
-  Name = "Choose Aim Method",
-  Options = AimbotMethod,
-  Multi = false,
-  Flag = "ChooseAimMethod",
-  Callback = function(Value)
-    ABmethod = Value
-  end
-})
-
-local AimbotMethodSkills = Tab13:AddToggle({
-  Name = "Aimbot Method Skills",
-  Description = "",
-  Default = false,
-  Flag = "AimbotMethodSkills",
-  Callback = function(Value)
-    _G.AimMethod = Value
-  end
-})
-
-task.spawn(function()
-  while task.wait() do
-    pcall(function()
-      if _G.AimMethod and ABmethod == "Auto Aimbots" then
-        local MaxDistance = math.huge
-        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-          if v.Name ~= plr.Name and v.Team ~= game.Players.LocalPlayer.Team then
-            local Distance = v:DistanceFromCharacter(plr.Character.HumanoidRootPart.Position)
-            if Distance < MaxDistance then
-              MaxDistance = Distance
-              MousePos = v.Character:FindFirstChild("HumanoidRootPart").Position
-            end
-          end
-        end
-      end
-    end)
-  end
-end)
 	local AutoSerpentBow = Tab3:AddToggle({
 	Name = "Auto Serpent Bow",
 	Description = "",
@@ -10577,6 +10578,7 @@ end)
 			end)
 		end)
 		Window:SelectTab(1)
+
 
 
 
