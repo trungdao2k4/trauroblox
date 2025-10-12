@@ -5253,7 +5253,7 @@ local SpeedSlider = Tab14:AddSlider({
 		end
 	end
 	end)
-	if world3 then
+	if World3 then
 	Tab3:AddSection({
 	Name = "Tushita + Yama"
 	})
@@ -10651,6 +10651,7 @@ end)
 			end)
 		end)
 		Window:SelectTab(1)
+
 
 
 
