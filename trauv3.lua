@@ -434,25 +434,27 @@
 					end
 				end
 			end
-			BringEnemy = function()
-				if not _B then
-					return
-				end
-				for _, v in pairs(workspace.Enemies:GetChildren()) do
-					if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-						if (v.PrimaryPart.Position - PosMon).Magnitude <= 250 then
-							v.PrimaryPart.CFrame = CFrame.new(PosMon)
-							v.PrimaryPart.CanCollide = true;
-							v:FindFirstChild("Humanoid").WalkSpeed = 0;
-							v:FindFirstChild("Humanoid").JumpPower = 0;
-							if v.Humanoid:FindFirstChild("Animator") then
-								v.Humanoid.Animator:Destroy()
-							end;
-							plr.SimulationRadius = math.huge
-						end
-					end
-				end                    	
-			end
+					BringEnemy = function()
+    if not _B then
+        return
+    end
+    local enemies = workspace.Enemies:GetChildren()
+    plr.SimulationRadius = math.huge 
+    for _, v in ipairs(enemies) do
+        if v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+            if (v.PrimaryPart.Position - PosMon).Magnitude <= 200 then
+                v.PrimaryPart.CFrame = CFrame.new(PosMon)
+                v.PrimaryPart.CanCollide = true
+                local humanoid = v:FindFirstChild("Humanoid")
+                humanoid.WalkSpeed = 10
+                humanoid.JumpPower = 0
+                if humanoid:FindFirstChild("Animator") then
+                    humanoid.Animator:Destroy()
+                end
+            end
+        end
+    end
+end
 			Useskills = function(weapon, skill)
 				if weapon == "Melee" then
 					weaponSc("Melee")
@@ -10649,6 +10651,7 @@ end)
 			end)
 		end)
 		Window:SelectTab(1)
+
 
 
 
